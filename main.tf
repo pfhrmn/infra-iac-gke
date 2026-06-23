@@ -33,6 +33,7 @@ resource "google_container_node_pool" "default_pool" {
     oauth_scopes = ["https://www.googleapis.com/auth/cloud-platform"]
   }
 }
+
 resource "google_service_account" "app_sa" {
   account_id   = "app-service-account"
   display_name = "App Service Account"
@@ -42,4 +43,20 @@ resource "google_project_iam_member" "app_sa_workload_identity" {
   project = var.project_id
   role    = "roles/iam.workloadIdentityUser"
   member  = "serviceAccount:${var.project_id}.svc.id.goog[default/app-sa]"
+}
+
+resource "kubernetes_service_account" "app_sa" {
+  metadata {
+    name      = "app-sa"
+    namespace = "default"
+    annotations = {
+      "iam.gke.io/gcp-service-account" = google_service_account.app_sa.email
+    }
+  }
+}
+
+resource "google_dns_managed_zone" "platform_zone" {
+  name        = "platform-zone"
+  dns_name    = "platform.local."
+  description = "DNS zone for platform services"
 }
