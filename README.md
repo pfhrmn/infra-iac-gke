@@ -30,3 +30,16 @@ Um die Infrastruktur zu erstellen, werden folgende Schritte ausgeführt:
 terraform init
 terraform plan
 terraform apply
+```
+
+---
+
+## Screenshots / Nachweis
+
+![Produktions-Tenant](docs/screenshots/production.jpg)
+
+*Die von dieser IaC bereitgestellte Plattform – Produktions-Tenant live unter https://production.gcloud.it-n.at*
+
+![Pods](docs/screenshots/pods.jpg)
+
+*Laufende Pods im provisionierten Cluster (kubectl get pods -A)*
