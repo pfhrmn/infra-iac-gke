@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: app-cert
+  namespace: default
+spec:
+  domains:
+    - app.platform.local
