@@ -22,9 +22,9 @@ resource "google_container_cluster" "gke" {
 }
 
 resource "google_container_node_pool" "default_pool" {
-  name       = "default-pool"
-  cluster    = google_container_cluster.gke.name
-  location   = var.zone
+  name     = "default-pool"
+  cluster  = google_container_cluster.gke.name
+  location = var.zone
 
   node_count = 2
 
