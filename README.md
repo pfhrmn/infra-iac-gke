@@ -7,7 +7,7 @@ Die Infrastruktur wird vollständig mit **Terraform** in Google Cloud bereitgest
 
 ## Zweck dieses Repositories
 
-Dieses Repository wird von **Person 1** gepflegt und stellt die komplette Basisinfrastruktur bereit, die später von ArgoCD und dem GitOps‑Workflow genutzt wird.
+Dieses Repository stellt die komplette Basisinfrastruktur bereit, die später von ArgoCD und dem GitOps‑Workflow genutzt wird.
 
 Es provisioniert:
 
