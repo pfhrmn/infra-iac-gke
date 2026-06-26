@@ -11,12 +11,14 @@ Dieses Repository wird von **Person 1** gepflegt und stellt die komplette Basi
 
 Es provisioniert:
 
-- einen **GKE‑Cluster**
-- die notwendigen **IAM‑Rollen**
-- eine **Service Account‑Identität** für Workload Identity
-- eine **statische LoadBalancer‑IP**
-- einen **DNS A‑Record** für die Plattform‑Domain
-- ein **Managed Certificate** für HTTPS
+- ein **Netzwerk** (VPC + Subnet) und einen **GKE‑Cluster** (zonal, Workload Identity)
+- die **Node‑Pools** (e2-medium + e2-standard-2)
+- die **Cloud‑DNS‑Zone** `gcloud.it-n.at` (delegierte Subdomain)
+- eine **Artifact Registry** für die Tenant‑App‑Images
+- **Service Accounts + Workload‑Identity‑Bindings** für ExternalDNS, cert-manager und den External Secrets Operator
+- das **Cloud‑Monitoring‑Dashboard** (Bonus, siehe [`monitoring.tf`](monitoring.tf))
+
+DNS‑Einträge (A‑Records) und TLS‑Zertifikate werden anschließend automatisiert über ExternalDNS und cert-manager im GitOps‑Repo erzeugt – nicht über Terraform.
 
 Damit wird die gesamte Infrastruktur automatisiert, reproduzierbar und versioniert bereitgestellt.
 

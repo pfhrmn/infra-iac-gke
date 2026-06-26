@@ -19,6 +19,17 @@ resource "google_container_cluster" "gke" {
   workload_identity_config {
     workload_pool = "${var.project_id}.svc.id.goog"
   }
+
+  # Monitoring (Bonus): Managed Prometheus + GKE-Metriken fuer das Tenant-Dashboard
+  monitoring_config {
+    enable_components = [
+      "SYSTEM_COMPONENTS", "POD", "DEPLOYMENT", "STATEFULSET",
+      "DAEMONSET", "HPA", "STORAGE", "CADVISOR", "KUBELET"
+    ]
+    managed_prometheus {
+      enabled = true
+    }
+  }
 }
 
 resource "google_container_node_pool" "default_pool" {
